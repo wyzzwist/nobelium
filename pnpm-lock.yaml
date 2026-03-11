@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@heroicons/react':
+        specifier: ^1.0.6
+        version: 1.0.6(react@18.3.1)
       axios:
         specifier: ^1.7.9
         version: 1.13.6
@@ -145,6 +148,11 @@ packages:
 
   '@fisch0920/medium-zoom@1.0.7':
     resolution: {integrity: sha512-hPUrgVM/QvsZdZzDTPyL1C1mOtEw03RqTLmK7ZlJ8S/64u4O4O5BvPvjB/9kyLtE6iVaS9UDRAMSwmM9uh2JIw==}
+
+  '@heroicons/react@1.0.6':
+    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==}
+    peerDependencies:
+      react: '>= 16'
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -2846,6 +2854,10 @@ snapshots:
   '@eslint/js@8.57.1': {}
 
   '@fisch0920/medium-zoom@1.0.7': {}
+
+  '@heroicons/react@1.0.6(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
