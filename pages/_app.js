@@ -38,14 +38,33 @@ export default function MyApp ({ Component, pageProps, config, locale }) {
 }
 
 MyApp.getInitialProps = async ctx => {
-  const config = typeof window === 'object'
+  // 获取基础配置
+  const baseConfig = typeof window === 'object'
     ? await fetch('/api/config').then(res => res.json())
     : await import('@/lib/server/config').then(module => module.clientConfig)
+
+  // 服务端获取 Notion 配置并合并
+  let config = baseConfig
+  if (typeof window === 'undefined') {
+    const { getNotionConfig } = await import('@/lib/notion/getNotionConfig')
+    const notionConfig = await getNotionConfig()
+    config = {
+      ...baseConfig,
+      ...notionConfig,
+      comment: {
+        ...baseConfig.comment,
+        cusdisConfig: {
+          ...baseConfig.comment?.cusdisConfig,
+          appId: notionConfig.cusdisAppId || baseConfig.comment?.cusdisConfig?.appId
+        }
+      }
+    }
+  }
 
   prepareDayjs(config.timezone)
 
   return {
-    ...App.getInitialProps(ctx),
+    ...(await App.getInitialProps(ctx)),
     config,
     locale: await loadLocale('basic', config.lang)
   }

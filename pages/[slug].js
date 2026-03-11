@@ -74,7 +74,7 @@ export async function getStaticPaths () {
   const posts = await getAllPosts({ includePages: true })
   return {
     paths: posts.map(row => `${clientConfig.path}/${row.slug}`),
-    fallback: true
+    fallback: 'blocking'
   }
 }
 
@@ -82,17 +82,27 @@ export async function getStaticProps ({ params: { slug } }) {
   const posts = await getAllPosts({ includePages: true })
   const post = posts.find(t => t.slug === slug)
 
-  if (!post) return { notFound: true }
+  if (!post) return { notFound: true, revalidate: 1}
 
   const blockMap = await getPostBlocks(post.id)
+  const { clientConfig } = await import('@/lib/server/config')
+  const { getNotionConfig } = await import('@/lib/notion/getNotionConfig')
+  const notionConfig = await getNotionConfig()
+  const mergedEmail = notionConfig.email || clientConfig.email || ''
+
+  const { createHash } = await import('crypto')
   const emailHash = createHash('md5')
-    .update(clientConfig.email)
+    .update(mergedEmail)
     .digest('hex')
     .trim()
     .toLowerCase()
 
   return {
-    props: { post, blockMap, emailHash },
+    props: {
+      post,
+      blockMap,
+      emailHash
+    },
     revalidate: 1
   }
 }
