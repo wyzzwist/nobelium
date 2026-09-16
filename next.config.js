@@ -1,4 +1,8 @@
 module.exports = {
+  experimental: {
+    // Notion's unofficial API rate-limits concurrent build requests.
+    cpus: 1
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'gravatar.com' }
