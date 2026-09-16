@@ -6,10 +6,10 @@ import { useLocale } from '@/lib/locale'
 import useTheme from '@/lib/theme'
 import { useRouter } from 'next/router'
 import {
-  RssIcon,
   NewspaperIcon,
   MenuAlt1Icon,
   FilmIcon,
+  PuzzleIcon,
   SparklesIcon,
   SearchIcon,
 } from '@heroicons/react/outline'
@@ -30,7 +30,7 @@ const NavBar = () => {
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', icon: <NewspaperIcon className='inline-block mb-1 h-5 w-5' />, show: true },
     { id: 1, name: locale.NAV.ABOUT, to: '/about', icon: <SparklesIcon className='inline-block mb-1 h-5 w-5' />, show: BLOG.showAbout },
-    { id: 2, name: locale.NAV.RSS, to: '/feed', show: true, icon: <RssIcon className='inline-block mb-1 h-5 w-5' />, external: true },
+    { id: 2, name: locale.NAV.PUZZLE, to: '/puzzle', show: true, icon: <PuzzleIcon className='inline-block mb-1 h-5 w-5' /> },
     { id: 3, name: locale.NAV.SEARCH, to: '/search', icon: <SearchIcon className='inline-block mb-1 h-5 w-5' />, show: true }
   ]
   return (
