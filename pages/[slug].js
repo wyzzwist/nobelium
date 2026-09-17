@@ -65,7 +65,7 @@ export default function BlogPost ({ post, blockMap, emailHash }) {
         </a>
       </div>
 
-      <Comments frontMatter={post} />
+      {post.type[0] !== 'Page' && <Comments frontMatter={post} />}
     </Container>
   )
 }

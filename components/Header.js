@@ -28,10 +28,10 @@ const NavBar = () => {
   }
 
   const links = [
-    { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', icon: <NewspaperIcon className='inline-block mb-1 h-5 w-5' />, show: true },
-    { id: 1, name: locale.NAV.ABOUT, to: '/about', icon: <SparklesIcon className='inline-block mb-1 h-5 w-5' />, show: BLOG.showAbout },
-    { id: 2, name: locale.NAV.PUZZLE, to: '/puzzle', show: true, icon: <PuzzleIcon className='inline-block mb-1 h-5 w-5' /> },
-    { id: 3, name: locale.NAV.SEARCH, to: '/search', icon: <SearchIcon className='inline-block mb-1 h-5 w-5' />, show: true }
+    { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', icon: <NewspaperIcon className='h-5 w-5 shrink-0' />, show: true },
+    { id: 1, name: locale.NAV.ABOUT, to: '/about', icon: <SparklesIcon className='h-5 w-5 shrink-0' />, show: BLOG.showAbout },
+    { id: 2, name: locale.NAV.PUZZLE, to: '/puzzle', show: true, icon: <PuzzleIcon className='h-5 w-5 shrink-0' /> },
+    { id: 3, name: locale.NAV.SEARCH, to: '/search', icon: <SearchIcon className='h-5 w-5 shrink-0' />, show: true }
   ]
   return (
     <div className="flex-shrink-0">
@@ -44,9 +44,9 @@ const NavBar = () => {
                 className="block ml-4 text-black dark:text-gray-50 nav hover:text-purple-800"
               >
                 <Link href={link.to} target={link.external ? '_blank' : null}>
-                  <div className='font-medium'>
+                  <div className='flex items-center gap-1 font-medium leading-6'>
                     {link.icon}
-                    <span className='inline-block m-1'>{link.name}</span>
+                    <span>{link.name}</span>
                   </div>
                 </Link>
               </li>
@@ -153,7 +153,7 @@ const HeaderName = forwardRef(function HeaderName ({ siteTitle, siteDescription,
   return (
     <p
       ref={ref}
-      className="header-name ml-2 font-medium text-gray-600 dark:text-gray-300 capture-pointer-events items-center"
+      className="header-name ml-2 font-medium leading-6 text-gray-600 dark:text-gray-300 capture-pointer-events items-center whitespace-nowrap"
       onClick={onClick}
     >
       {postTitle && <span className="post-title row-start-1 col-start-1">{postTitle}</span>}
