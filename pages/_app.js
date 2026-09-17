@@ -1,9 +1,11 @@
 import 'prismjs/themes/prism.css'
 import 'react-notion-x/src/styles.css'
 import 'katex/dist/katex.min.css'
+import '@waline/client/waline.css'
 import App from 'next/app'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
+import '@/styles/waline.css'
 import dynamic from 'next/dynamic'
 import loadLocale from '@/assets/i18n'
 import { ConfigProvider } from '@/lib/config'
@@ -53,10 +55,7 @@ MyApp.getInitialProps = async ctx => {
       ...notionConfig,
       comment: {
         ...baseConfig.comment,
-        cusdisConfig: {
-          ...baseConfig.comment?.cusdisConfig,
-          appId: notionConfig.cusdisAppId || baseConfig.comment?.cusdisConfig?.appId
-        }
+        ...notionConfig.comment
       }
     }
   }

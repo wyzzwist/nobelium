@@ -60,6 +60,7 @@ Demo: [https://nobelium.vercel.app/](https://nobelium.vercel.app/)
   - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits after your workspace address
   - `NOTION_ACCESS_TOKEN` (Optional, not recommended): If you decide not to share your database, you can use token to let Nobelium grab data from Notion database. You can find it in your browser cookies called `token_v2`
     - Keep in mind Notion token is only valid for 180 days, make sure to update manually in vercel dashboard, we probably switch to Official API to resolve this issue in the future. Also, images in Notion database will not properly rendered
+  - `NEXT_PUBLIC_WALINE_SERVER_URL` (Required for comments): The URL of your deployed Waline server
 - **That's it!** Easy-peasy?
 
 <details><summary>Wait for a sec, what is Page ID？</summary>
@@ -108,7 +109,7 @@ Check out our roadmap [here](https://craigary.notion.site/Public-Roadmap-89d184e
 - **Generation**: Next.js and Incremental Static Regeneration
 - **Page render**: [react-notion-x](https://github.com/NotionX/react-notion-x)
 - **Style**: Tailwind CSS and `@tailwindcss/jit` compiler
-- **Comments**: Gitalk, Cusdis and more
+- **Comments**: Gitalk, Utterances and Waline
 
 ## FAQ
 

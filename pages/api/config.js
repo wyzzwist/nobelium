@@ -11,10 +11,7 @@ export default async function handler (req, res) {
       ...notionConfig,
       comment: {
         ...clientConfig.comment,
-        cusdisConfig: {
-          ...clientConfig.comment?.cusdisConfig,
-          appId: notionConfig.cusdisAppId || clientConfig.comment?.cusdisConfig?.appId
-        }
+        ...notionConfig.comment
       }
     }
   }

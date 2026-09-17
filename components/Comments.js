@@ -2,7 +2,6 @@ import 'gitalk/dist/gitalk.css'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import cn from 'classnames'
-import { fetchCusdisLang } from '@/lib/cusdisLang'
 import { useConfig } from '@/lib/config'
 
 const GitalkComponent = dynamic(
@@ -17,12 +16,7 @@ const UtterancesComponent = dynamic(
   },
   { ssr: false }
 )
-const CusdisComponent = dynamic(
-  () => {
-    return import('react-cusdis').then(m => m.ReactCusdis)
-  },
-  { ssr: false }
-)
+const WalineComponent = dynamic(() => import('@/components/Waline'), { ssr: false })
 
 const Comments = ({ frontMatter }) => {
   const router = useRouter()
@@ -54,17 +48,11 @@ const Comments = ({ frontMatter }) => {
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
         <UtterancesComponent issueTerm={frontMatter.id} />
       )}
-      {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
-        <CusdisComponent
-          lang={fetchCusdisLang(BLOG.lang)}
-          attrs={{
-            host: BLOG.comment.cusdisConfig.host,
-            appId: BLOG.comment.cusdisConfig.appId,
-            pageId: frontMatter.id,
-            pageTitle: frontMatter.title,
-            pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
-          }}
+      {BLOG.comment && BLOG.comment.provider === 'waline' && (
+        <WalineComponent
+          serverURL={BLOG.comment.walineConfig?.serverURL}
+          path={router.asPath.split('?')[0]}
+          lang={BLOG.lang}
         />
       )}
     </div>
